@@ -17,7 +17,9 @@ def walk_extracted_dist(package: str, filename: str, extracted_filepath: str):
     global seen_keys
     for root, _, extracted_filenames in os.walk(extracted_filepath):
         for extracted_filename in extracted_filenames:
-            if re.search(r"\.(?:so\.|\.so$|dll$|pyd$|a$)", extracted_filename):
+            if re.search(
+                r"\.(?:so\.|\.so$|dll$|pyd$|la$|a$|js$|ts$)", extracted_filename
+            ):
                 key = (package, extracted_filename)
                 if key not in seen_keys:
                     print(f"{package},{extracted_filename},{filename}")
